@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "4b3c3470-7a4d-409d-b599-9f6fa864464d",
+		"name": "GestionIndicateurEpargnant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAccessToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97bf10ee-dde4-4c83-9f4d-956a6cbf8dff",
+						"exec": [
+							"var reponse = pm.response.json();\r",
+							"pm.globals.set(\"jeton\", reponse.jetonAcces);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "54a78f3cbce64a1b962c1b2c270fb201",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"identifiantApplication\": \"cfc2cb4d-3c59-41e6-9955-c5c2b14dd012\",\r\n  \"ressource\": \"https://espaceepargnant-ti.fondsdev.com\",\r\n  \"nomUtilisateur\": \"375408112@pub.fondsdev.com\",\r\n  \"motDePasse\": \"Tre@sureIsland1234\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://api-ti.fondsdev.com/v1/ti/securite/authentification/authentifier",
+					"protocol": "https",
+					"host": [
+						"api-ti",
+						"fondsdev",
+						"com"
+					],
+					"path": [
+						"v1",
+						"ti",
+						"securite",
+						"authentification",
+						"authentifier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ReadOnly",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jeton}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "2a27cd4fea9d46ba94392741d0e06dff",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "my-url-global",
+							"value": "https://api-ti.fondsdev.com/v1/offreEpargne/relationEpargnEmploy/infosPortailEpargnants/109353515",
+							"type": "text"
+						},
+						{
+							"key": "nap",
+							"value": "109353515",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api-ti.fondsdev.com/v1/offreEpargne/relationEpargnEmploy/infosPortailEpargnants/109353515",
+					"protocol": "https",
+					"host": [
+						"api-ti",
+						"fondsdev",
+						"com"
+					],
+					"path": [
+						"v1",
+						"offreEpargne",
+						"relationEpargnEmploy",
+						"infosPortailEpargnants",
+						"109353515"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jeton}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c0f1e66c-1c7f-4ae7-a516-6a3b136a8780",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "8b7fc81f-d1a6-4f3a-bcfd-a90530778208",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "1b6a1110-ca7d-46af-aa0e-1a13af8c3e74",
+			"key": "my-url-collection",
+			"value": "https://api-ti.fondsdev.com/v1/offreEpargne/relationEpargnEmploy/infosPortailEpargnants/109353515",
+			"type": "string"
+		}
+	]
+}
